@@ -1,9 +1,20 @@
 <view class="container">
-  <view class="header">
-    <text class="title">AI消息总结官</text>
-    <text class="subtitle">智能提取聊天记录中的关键信息</text>
+  <!-- 自定义状态栏和导航栏 -->
+  <view class="custom-navbar">
+    <view class="status-bar" style="height: {{statusBarHeight}}px"></view>
+    <view class="nav-bar">
+    </view>
   </view>
 
+  <!-- 标题区域 -->
+  <view class="header" style="padding-top: {{statusBarHeight + 44}}px">
+    <view class="header-content">
+      <text class="title">AI消息总结官</text>
+      <text class="subtitle">智能提取聊天记录中的关键信息</text>
+    </view>
+  </view>
+
+  <!-- 表单区域 -->
   <view class="form">
     <!-- 场景选择 -->
     <view class="form-item">

@@ -12,6 +12,7 @@ Page({
     loading: false,
     generating: false,
     streamingText: '',
+    statusBarHeight: 0, // 添加状态栏高度
     scenes: [
       { value: 'work', label: '工作' },
       { value: 'study', label: '学习' },
@@ -21,6 +22,15 @@ Page({
   },
 
   onLoad() {
+    // 获取系统信息，设置状态栏高度
+    const systemInfo = wx.getSystemInfoSync();
+    const statusBarHeight = systemInfo.statusBarHeight;
+    
+    // 使用 setData 设置状态栏高度
+    this.setData({
+      statusBarHeight: statusBarHeight
+    });
+
     // 检查云开发环境
     const app = getApp();
     if (!app.globalData.env) {
