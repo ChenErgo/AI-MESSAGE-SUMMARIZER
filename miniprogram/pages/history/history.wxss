@@ -1,0 +1,158 @@
+.container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 30rpx;
+}
+
+.stats {
+  text-align: center;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.stats-text {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+
+.empty-action {
+  padding: 20rpx 60rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border-radius: 48rpx;
+  font-size: 28rpx;
+}
+
+.list {
+  margin-bottom: 20rpx;
+}
+
+.item {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.scene-tag {
+  padding: 8rpx 20rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 8rpx;
+}
+
+.time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.item-content {
+  margin-bottom: 20rpx;
+}
+
+.summary-points {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.point {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.6;
+  padding-left: 8rpx;
+}
+
+.todo-preview {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  padding: 16rpx;
+  background: #F6FFED;
+  border-radius: 8rpx;
+}
+
+.todo-icon {
+  font-size: 28rpx;
+}
+
+.todo-count {
+  font-size: 26rpx;
+  color: #52C41A;
+  font-weight: 500;
+}
+
+.item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cache-badge {
+  display: flex;
+  align-items: center;
+  padding: 8rpx 16rpx;
+  background: #E6F7FF;
+  color: #1890FF;
+  font-size: 22rpx;
+  border-radius: 6rpx;
+}
+
+.delete-btn {
+  padding: 8rpx 20rpx;
+  background: #FFF1F0;
+  color: #FF4D4F;
+  font-size: 24rpx;
+  border-radius: 8rpx;
+}
+
+.load-more {
+  text-align: center;
+  padding: 30rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.no-more {
+  text-align: center;
+  padding: 30rpx;
+  font-size: 26rpx;
+  color: #ccc;
+}
+
+.back-home {
+  text-align: center;
+  padding: 24rpx;
+  font-size: 28rpx;
+  color: #999;
+}

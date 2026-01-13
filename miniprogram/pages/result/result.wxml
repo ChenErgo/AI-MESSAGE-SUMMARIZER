@@ -1,0 +1,123 @@
+<view class="container" wx:if="{{result}}">
+  <!-- 缓存标记 -->
+  <view class="cache-badge" wx:if="{{meta && meta.from_cache}}">
+    <text>⚡ 来自缓存</text>
+  </view>
+
+  <!-- 重点 -->
+  <view class="section" wx:if="{{result.summary_points && result.summary_points.length > 0}}">
+    <view class="section-header">
+      <text class="section-icon">📌</text>
+      <text class="section-title">重点</text>
+    </view>
+    <view class="section-content">
+      <view class="point" wx:for="{{result.summary_points}}" wx:key="index">
+        <text class="point-marker">•</text>
+        <text class="point-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 结论 -->
+  <view class="section" wx:if="{{result.decisions && result.decisions.length > 0}}">
+    <view class="section-header">
+      <text class="section-icon">✅</text>
+      <text class="section-title">结论</text>
+    </view>
+    <view class="section-content">
+      <view class="decision" wx:for="{{result.decisions}}" wx:key="index">
+        <text class="decision-marker">{{index + 1}}.</text>
+        <text class="decision-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 待办 -->
+  <view class="section" wx:if="{{result.todos && result.todos.length > 0}}">
+    <view class="section-header">
+      <text class="section-icon">📋</text>
+      <text class="section-title">待办</text>
+    </view>
+    <view class="section-content">
+      <view class="todo" wx:for="{{result.todos}}" wx:key="index">
+        <view class="todo-main">
+          <text class="todo-marker">{{index + 1}}.</text>
+          <text class="todo-task">{{item.task}}</text>
+        </view>
+        <view class="todo-meta">
+          <text class="todo-owner" wx:if="{{item.owner_hint && item.owner_hint !== '未明确'}}">
+            👤 {{item.owner_hint}}
+          </text>
+          <text class="todo-due" wx:if="{{item.due_hint && item.due_hint !== '未明确'}}">
+            📅 {{item.due_hint}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未决问题 -->
+  <view class="section" wx:if="{{result.open_questions && result.open_questions.length > 0}}">
+    <view class="section-header">
+      <text class="section-icon">❓</text>
+      <text class="section-title">未决问题</text>
+    </view>
+    <view class="section-content">
+      <view class="question" wx:for="{{result.open_questions}}" wx:key="index">
+        <text class="question-marker">Q{{index + 1}}</text>
+        <text class="question-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 风险提示 -->
+  <view class="section" wx:if="{{result.risk_flags && result.risk_flags.length > 0}}">
+    <view class="section-header">
+      <text class="section-icon">⚠️</text>
+      <text class="section-title">风险提示</text>
+    </view>
+    <view class="section-content">
+      <view class="risk-tags">
+        <text class="risk-tag" wx:for="{{result.risk_flags}}" wx:key="index">
+          {{item}}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 免责声明 -->
+  <view class="disclaimer">
+    <text class="disclaimer-icon">⚠️</text>
+    <text class="disclaimer-text">{{result.disclaimer}}</text>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <button class="action-btn" bindtap="onCopyAll">
+      <text class="btn-icon">📋</text>
+      <text>复制全部</text>
+    </button>
+    <button class="action-btn" bindtap="onCopyTodos" wx:if="{{result.todos && result.todos.length > 0}}">
+      <text class="btn-icon">📝</text>
+      <text>复制待办</text>
+    </button>
+    <button class="action-btn" bindtap="onExportTodos" wx:if="{{result.todos && result.todos.length > 0}}">
+      <text class="btn-icon">📤</text>
+      <text>导出待办</text>
+    </button>
+    <button class="action-btn secondary" bindtap="onRegenerate">
+      <text class="btn-icon">🔄</text>
+      <text>重新生成</text>
+    </button>
+  </view>
+
+  <!-- 返回首页 -->
+  <view class="back-home" bindtap="onBackToHome">
+    <text>返回首页</text>
+  </view>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading-container" wx:if="{{loading}}">
+  <text>加载中...</text>
+</view>

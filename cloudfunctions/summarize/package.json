@@ -1,0 +1,15 @@
+{
+  "name": "summarize",
+  "version": "1.0.0",
+  "description": "AI消息总结云函数",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && cp dist/index.js . && cp -r dist/lib .",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@cloudbase/js-sdk": "1.7.0",
+    "@cloudbase/adapter-node": "1.0.4",
+    "wx-server-sdk": "~2.6.3"
+  }
+}

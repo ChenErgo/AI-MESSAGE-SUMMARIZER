@@ -1,0 +1,75 @@
+<view class="container">
+  <!-- 统计信息 -->
+  <view class="stats" wx:if="{{total > 0}}">
+    <text class="stats-text">共 {{total}} 条记录</text>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{list.length === 0 && !loading}}">
+    <text class="empty-icon">📝</text>
+    <text class="empty-text">暂无历史记录</text>
+    <view class="empty-action" bindtap="onBackToHome">
+      <text>去生成总结</text>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view class="list" wx:else>
+    <view
+      class="item"
+      wx:for="{{list}}"
+      wx:key="_id"
+      bindtap="onViewDetail"
+      data-id="{{item._id}}"
+    >
+      <view class="item-header">
+        <view class="scene-tag">
+          <text>{{util.getSceneName(item.scene)}}</text>
+        </view>
+        <text class="time">{{util.formatRelativeTime(item.created_at)}}</text>
+      </view>
+
+      <!-- 总结要点 -->
+      <view class="item-content" wx:if="{{item.output_json && item.output_json.summary_points}}">
+        <view class="summary-points">
+          <text class="point" wx:for="{{item.output_json.summary_points}}" wx:for-item="point" wx:for-index="pointIndex" wx:key="pointIndex">
+            • {{point}}
+          </text>
+        </view>
+      </view>
+
+      <!-- 待办事项 -->
+      <view class="item-content" wx:if="{{item.output_json && item.output_json.todos && item.output_json.todos.length > 0}}">
+        <view class="todo-preview">
+          <text class="todo-icon">📋</text>
+          <text class="todo-count">{{item.output_json.todos.length}} 个待办</text>
+        </view>
+      </view>
+
+      <view class="item-footer">
+        <view class="cache-badge" wx:if="{{item.from_cache}}">
+          <text>⚡ 缓存</text>
+        </view>
+        <view class="delete-btn" catchtap="onDelete" data-id="{{item._id}}" data-index="{{index}}">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore && list.length > 0}}">
+    <text wx:if="{{loading}}">加载中...</text>
+    <text wx:else>上拉加载更多</text>
+  </view>
+
+  <!-- 没有更多 -->
+  <view class="no-more" wx:if="{{!hasMore && list.length > 0}}">
+    <text>没有更多了</text>
+  </view>
+
+  <!-- 返回首页 -->
+  <view class="back-home" bindtap="onBackToHome" wx:if="{{list.length > 0}}">
+    <text>返回首页</text>
+  </view>
+</view>

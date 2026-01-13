@@ -1,0 +1,98 @@
+<view class="container">
+  <view class="header">
+    <text class="title">AI消息总结官</text>
+    <text class="subtitle">智能提取聊天记录中的关键信息</text>
+  </view>
+
+  <view class="form">
+    <!-- 场景选择 -->
+    <view class="form-item">
+      <text class="label">场景</text>
+      <picker
+        mode="selector"
+        range="{{scenes}}"
+        range-key="label"
+        value="{{sceneIndex}}"
+        bindchange="onSceneChange"
+      >
+        <view class="picker">
+          {{scenes[sceneIndex].label}}
+          <text class="arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 自定义提示 -->
+    <view class="form-item" wx:if="{{scene === 'custom'}}">
+      <text class="label">总结偏好</text>
+      <input
+        class="input"
+        placeholder="例如：重点关注待办事项和截止时间"
+        value="{{customHint}}"
+        bindinput="onCustomHintInput"
+      />
+    </view>
+
+    <!-- 文本输入 -->
+    <view class="form-item textarea-item">
+      <text class="label">聊天记录</text>
+      <textarea
+        class="textarea"
+        placeholder="请粘贴或输入聊天记录..."
+        value="{{text}}"
+        bindinput="onTextInput"
+        maxlength="{{maxCharCount}}"
+        auto-height
+      />
+      <view class="char-count">
+        <text class="{{charCount > maxCharCount ? 'over' : ''}}">
+          {{charCount}}/{{maxCharCount}}
+        </text>
+      </view>
+    </view>
+
+    <!-- 保存历史开关 -->
+    <view class="form-item switch-item">
+      <text class="label">保存到历史</text>
+      <switch
+        checked="{{saveHistory}}"
+        bindchange="onSaveHistoryChange"
+        color="#07C160"
+      />
+    </view>
+
+    <!-- 提交按钮 -->
+    <button
+      class="submit-btn"
+      bindtap="onSubmit"
+      disabled="{{loading}}"
+      loading="{{loading}}"
+    >
+      {{loading ? '生成中...' : '生成总结'}}
+    </button>
+
+    <!-- 流式响应显示 -->
+    <view class="streaming-display" wx:if="{{generating && streamingText}}">
+      <view class="streaming-header">
+        <text class="streaming-icon">✨</text>
+        <text class="streaming-title">AI 正在生成...</text>
+      </view>
+      <view class="streaming-content">
+        <text>{{streamingText}}</text>
+      </view>
+    </view>
+
+    <!-- 历史记录入口 -->
+    <view class="history-link" bindtap="goToHistory">
+      <text>查看历史记录</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 免责声明 -->
+  <view class="disclaimer">
+    <text>• 仅处理用户输入的文本内容</text>
+    <text>• 结果仅供参考，不代替人工决策</text>
+    <text>• 不会代替人工决策</text>
+  </view>
+</view>

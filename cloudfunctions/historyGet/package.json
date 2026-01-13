@@ -1,0 +1,17 @@
+{
+  "name": "historyGet",
+  "version": "1.0.0",
+  "description": "获取单条历史记录云函数",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && cp dist/index.js . && cp -r dist/lib .",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "wx-server-sdk": "~2.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}
