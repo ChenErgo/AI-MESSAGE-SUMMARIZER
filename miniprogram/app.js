@@ -13,6 +13,26 @@ App({
 
     this.globalData = {
       env: 'ai-message-summarizer-3a856f6650',
+      openid: null,
     };
+
+    // 获取用户 openid
+    this.getUserOpenId();
+  },
+
+  // 获取用户 openid
+  async getUserOpenId() {
+    try {
+      const res = await wx.cloud.callFunction({
+        name: 'login',
+      });
+
+      if (res.result.ok) {
+        this.globalData.openid = res.result.data.openid;
+        console.log('[App] 用户 openid:', this.globalData.openid);
+      }
+    } catch (err) {
+      console.error('[App] 获取 openid 失败:', err);
+    }
   },
 });

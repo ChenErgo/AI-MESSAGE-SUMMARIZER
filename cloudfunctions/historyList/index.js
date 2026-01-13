@@ -13,7 +13,9 @@ exports.main = async (event, context) => {
   
   const wxContext = cloud.getWXContext();
   const db = cloud.database();
-  const openid = wxContext.OPENID || 'test_user_001';
+  const openid = wxContext.OPENID;
+  
+  console.log('[HistoryList] 查询 openid:', openid ? openid.substring(0, 10) + '...' : 'null');
   
   try {
     const skip = (page - 1) * page_size;

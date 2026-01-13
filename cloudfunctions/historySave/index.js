@@ -23,9 +23,9 @@ exports.main = async (event, context) => {
   // 计算哈希
   const textHash = crypto.createHash('md5').update(text).digest('hex');
   
-  // 构建记录
+  // 构建记录，使用真实的 openid
   const record = {
-    openid: wxContext.OPENID || 'test_user_001',
+    openid: wxContext.OPENID,
     text_hash: textHash,
     scene: scene || 'work',
     custom_hint: custom_hint || '',
@@ -36,7 +36,7 @@ exports.main = async (event, context) => {
   };
   
   console.log('[HistorySave] 准备保存记录:', {
-    openid: record.openid,
+    openid: record.openid ? record.openid.substring(0, 10) + '...' : 'null',
     scene: record.scene,
     input_len: record.input_len,
     output_json_type: typeof record.output_json,

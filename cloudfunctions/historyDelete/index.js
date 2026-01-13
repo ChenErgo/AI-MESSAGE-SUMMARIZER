@@ -17,7 +17,9 @@ exports.main = async (event, context) => {
   
   const wxContext = cloud.getWXContext();
   const db = cloud.database();
-  const openid = wxContext.OPENID || 'test_user_001';
+  const openid = wxContext.OPENID;
+  
+  console.log('[HistoryDelete] 当前用户 openid:', openid ? openid.substring(0, 10) + '...' : 'null');
   
   try {
     // 先检查权限
@@ -27,7 +29,11 @@ exports.main = async (event, context) => {
       throw new Error('记录不存在');
     }
     
+    console.log('[HistoryDelete] 记录 openid:', record.data.openid ? record.data.openid.substring(0, 10) + '...' : 'null');
+    
+    // 检查权限
     if (record.data.openid !== openid) {
+      console.error('[HistoryDelete] 权限检查失败');
       throw new Error('无权删除此记录');
     }
     

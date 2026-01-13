@@ -17,7 +17,9 @@ exports.main = async (event, context) => {
   
   const wxContext = cloud.getWXContext();
   const db = cloud.database();
-  const openid = wxContext.OPENID || 'test_user_001';
+  const openid = wxContext.OPENID;
+  
+  console.log('[HistoryGet] 当前用户 openid:', openid ? openid.substring(0, 10) + '...' : 'null');
   
   try {
     const result = await db.collection('summaries').doc(id).get();
@@ -26,8 +28,11 @@ exports.main = async (event, context) => {
       throw new Error('记录不存在');
     }
     
+    console.log('[HistoryGet] 记录 openid:', result.data.openid ? result.data.openid.substring(0, 10) + '...' : 'null');
+    
     // 检查权限
     if (result.data.openid !== openid) {
+      console.error('[HistoryGet] 权限检查失败');
       throw new Error('无权访问此记录');
     }
     
