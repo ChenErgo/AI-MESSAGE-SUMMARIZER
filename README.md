@@ -104,7 +104,7 @@
 
 1. **克隆项目**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ChenErgo/AI-MESSAGE-SUMMARIZER.git
    cd ai-message-summarizer
    ```
 
@@ -135,7 +135,7 @@
 
 5. **配置 AI Agent**
 
-   确保云开发环境中已配置 AI Agent，botId 为 `agent-message-8gp7tymn95fb752c`
+   确保云开发环境中已配置 AI Agent
 
 ## 📁 项目结构
 
